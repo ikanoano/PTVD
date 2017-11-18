@@ -1,0 +1,4 @@
+getCanonicalFile
+getCanonicalPath
+normalize
+register

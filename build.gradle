@@ -1,0 +1,19 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  // This dependency is found on compile classpath of this component and consumers.
+  compile 'net.sourceforge.pmd:pmd-java:5.8.1'
+  compile 'com.github.equus52:pattern-matching4j:0.2.0'
+  // Use JUnit test framework
+  testCompile 'junit:junit:4.12'
+}
+
+// Define the main class for the application
+mainClassName = 'App'
+

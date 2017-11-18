@@ -1,0 +1,1 @@
+public enum Flag { PRIMITIVE, NORMALIZED, SANITIZED, IO }
