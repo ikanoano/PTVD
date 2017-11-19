@@ -1,5 +1,5 @@
 # PTVD
-Very simple path traversal vulnerabirity detector for java source code.
+Very simple path traversal vulnerability detector for java source code.
 
 ## Dependency
 * JDK 9
@@ -9,3 +9,6 @@ Very simple path traversal vulnerabirity detector for java source code.
 ```
 $ gradle run
 ```
+
+## License
+MIT
