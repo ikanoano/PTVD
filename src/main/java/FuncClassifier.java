@@ -24,7 +24,7 @@ public class FuncClassifier extends JavaParserVisitorAdapter {
   }
 
   // Finalize function attribute to step forward
-  public void Complete() {
+  public void CompleteStep() {
     funcs     = funcsNext;
     funcsNext = new HashMap<>();
     // Deep copy

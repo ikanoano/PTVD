@@ -41,7 +41,7 @@ public class DirTraversalDetector {
           classifier.visit(unit, null);
         }
       }
-      classifier.Complete();
+      classifier.CompleteStep();
     }
 
     // Check vulnerability
