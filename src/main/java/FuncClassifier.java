@@ -5,8 +5,8 @@ import static equus.matching.PatternMatchers.*;
 import java.util.*;
 
 public class FuncClassifier extends JavaParserVisitorAdapter {
-  public HashMap<String, EnumSet<Flag>> funcs = new HashMap<>(64);
-  public HashMap<String, EnumSet<Flag>> funcsNext = new HashMap<>(64);
+  public  HashMap<String, EnumSet<Flag>> funcs = new HashMap<>();
+  private HashMap<String, EnumSet<Flag>> funcsNext = new HashMap<>();
 
   public FuncClassifier(
       List<String> normalizeFuncs,
@@ -21,6 +21,14 @@ public class FuncClassifier extends JavaParserVisitorAdapter {
         f -> funcs.put(f, EnumSet.of(Flag.PRIMITIVE, Flag.IO)));
     funcs.forEach((k,v) ->
         System.out.format("%s : %s%n", k, v.toString()));
+  }
+
+  // Finalize function attribute to step forward
+  public void Complete() {
+    funcs     = funcsNext;
+    funcsNext = new HashMap<>();
+    // Deep copy
+    funcs.forEach((k,v) -> funcsNext.put(k,v));
   }
 
   @Override

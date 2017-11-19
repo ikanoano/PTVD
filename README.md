@@ -7,7 +7,7 @@ Very simple path traversal vulnerability detector for java source code.
 
 ## How to run
 ```
-$ gradle run
+$ ./run [target.java] ...
 ```
 
 ## License
