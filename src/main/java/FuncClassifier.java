@@ -49,10 +49,7 @@ public class FuncClassifier extends JavaParserVisitorAdapter {
         caseType_(ASTPrimarySuffix.class,
           n -> n.getImage()),
 
-        //caseType_(ASTImportDeclaration.class, n -> n.getImportedName()),
-        //caseType_(ASTClassOrInterfaceType.class, n -> getFuncName(n, "?")),
         //caseType_(ASTName.class, n -> getFuncName(n, "?")),
-
         // Ignore other nodes
         caseDefault_(o -> null) );
 
@@ -78,11 +75,16 @@ public class FuncClassifier extends JavaParserVisitorAdapter {
       // baka
       EnumSet<Flag> trgFlags =
         funcsNext.getOrDefault(parentFuncName, EnumSet.noneOf(Flag.class));
+
       // Modify trgFlags
       EnumSet<Flag> srcFlags =
-        funcs.getOrDefault(name, EnumSet.noneOf(Flag.class));
+        EnumSet.copyOf(funcs.getOrDefault(name, EnumSet.noneOf(Flag.class)));
+      if(!srcFlags.contains(Flag.PRIMITIVE)) {
+        srcFlags.remove(Flag.IO); // Ignore IO if not primitive
+      }
+      srcFlags.remove(Flag.PRIMITIVE);
       trgFlags.addAll(srcFlags);
-      trgFlags.remove(Flag.PRIMITIVE);
+
       // Update
       funcsNext.put((String)parentFuncName, trgFlags);
     }
